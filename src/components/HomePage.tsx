@@ -131,160 +131,176 @@ const HomePage: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28 text-center">
-        <div className="w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl animate-fade-in-up">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
-            SyncTeamAI Conference
-          </h1>
-          <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300">
-            Human-AI collaboration, prompt engineering, and multi-agent workflows - launching soon.
-          </p>
-          <p className="mt-3 text-xs sm:text-sm text-slate-400">
-            Early access | Private demos | Founding-member perks
-          </p>
-          <p
-            key={subheadingIndex}
-            className="mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-400 min-h-[4rem] animate-fade-in"
-          >
-            {SUPPORTING_LINES[subheadingIndex]}
-          </p>
+      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="animate-fade-in-up text-center lg:text-left flex flex-col items-center lg:items-start">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
+              SyncTeamAI Conference
+            </h1>
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300">
+              Human-AI collaboration, prompt engineering, and multi-agent workflows - launching soon.
+            </p>
+            <p className="mt-3 text-xs sm:text-sm text-slate-400">
+              Early access | Private demos | Founding-member perks
+            </p>
+            <p
+              key={subheadingIndex}
+              className="mt-4 max-w-2xl text-sm sm:text-base md:text-lg text-slate-400 min-h-[4rem] animate-fade-in"
+            >
+              {SUPPORTING_LINES[subheadingIndex]}
+            </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 max-w-sm sm:max-w-md md:max-w-lg mx-auto">
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col md:flex-row gap-4">
-                <label htmlFor="name-input" className="w-full">
-                  <span className="sr-only">Name</span>
-                  <input
-                    id="name-input"
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+            <form
+              onSubmit={handleSubmit}
+              className="mt-6 sm:mt-8 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col md:flex-row gap-4">
+                  <label htmlFor="name-input" className="w-full">
+                    <span className="sr-only">Name</span>
+                    <input
+                      id="name-input"
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      onFocus={handleFormInteraction}
+                      placeholder="Enter your name"
+                      className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      required
+                    />
+                  </label>
+                  <label htmlFor="email-input" className="w-full">
+                    <span className="sr-only">Email Address</span>
+                    <input
+                      id="email-input"
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onFocus={handleFormInteraction}
+                      placeholder="Enter your email address"
+                      className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                      required
+                    />
+                  </label>
+                </div>
+                <label htmlFor="message-input" className="w-full">
+                  <span className="sr-only">Your Message (optional)</span>
+                  <textarea
+                    id="message-input"
+                    name="message"
+                    value={messageBody}
+                    onChange={(e) => setMessageBody(e.target.value)}
                     onFocus={handleFormInteraction}
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    required
-                  />
+                    placeholder="Your message (optional)"
+                    rows={3}
+                    className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"
+                  ></textarea>
                 </label>
-                <label htmlFor="email-input" className="w-full">
-                  <span className="sr-only">Email Address</span>
-                  <input
-                    id="email-input"
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onFocus={handleFormInteraction}
-                    placeholder="Enter your email address"
-                    className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    required
-                  />
-                </label>
+                <button
+                  type="submit"
+                  disabled={formStatus === "submitting"}
+                  className="w-full px-6 py-4 sm:py-3 text-base sm:text-sm font-semibold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors flex items-center justify-center disabled:bg-slate-600 disabled:cursor-not-allowed min-h-[44px] sm:min-h-[36px]"
+                >
+                  {formStatus === "submitting" ? (
+                    <>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      <span>Submitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Join the Waiting List</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="ml-2 h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </>
+                  )}
+                </button>
               </div>
-              <label htmlFor="message-input" className="w-full">
-                <span className="sr-only">Your Message (optional)</span>
-                <textarea
-                  id="message-input"
-                  name="message"
-                  value={messageBody}
-                  onChange={(e) => setMessageBody(e.target.value)}
-                  onFocus={handleFormInteraction}
-                  placeholder="Your message (optional)"
-                  rows={3}
-                  className="w-full px-4 py-3.5 sm:py-3 text-base sm:text-sm text-white bg-slate-800/50 border border-slate-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all resize-none"
-                ></textarea>
-              </label>
-              <button
-                type="submit"
-                disabled={formStatus === "submitting"}
-                className="w-full px-6 py-4 sm:py-3 text-base sm:text-sm font-semibold bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors flex items-center justify-center disabled:bg-slate-600 disabled:cursor-not-allowed min-h-[44px] sm:min-h-[36px]"
-              >
-                {formStatus === "submitting" ? (
-                  <>
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    <span>Submitting...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Join the Waiting List</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="ml-2 h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </>
-                )}
-              </button>
+            </form>
+            <div className="mt-4 min-h-[20px] text-xs max-w-lg">
+              {successMessage && <p className="text-green-400">{successMessage}</p>}
+              {errorMessage && <p className="text-yellow-500">{errorMessage}</p>}
+              {!successMessage && !errorMessage && (
+                <p className="text-slate-400">
+                  If our sign-up service is busy, this will open your email client as a backup.
+                </p>
+              )}
             </div>
-          </form>
-          <div className="mt-4 min-h-[20px] text-xs max-w-lg mx-auto">
-            {successMessage && <p className="text-green-400">{successMessage}</p>}
-            {errorMessage && <p className="text-yellow-500">{errorMessage}</p>}
-            {!successMessage && !errorMessage && (
-              <p className="text-slate-400">
-                If our sign-up service is busy, this will open your email client as a backup.
+          </div>
+
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+            <div className="bg-slate-800/40 border border-slate-700 rounded-lg p-6 sm:p-8 text-center lg:text-left">
+              <h2 className="text-xl sm:text-2xl font-semibold">While you&apos;re on the waiting list...</h2>
+              <p className="mt-3 text-sm sm:text-base text-slate-300">
+                The conference is rooted in practical prompt engineering. The book gives you the foundation now, so you
+                arrive ready to ask sharper questions and build stronger multi-agent workflows.
               </p>
-            )}
+              <div className="mt-5 flex flex-col items-center lg:items-start gap-2">
+                <button
+                  type="button"
+                  onClick={handleNavigateToProgress}
+                  className="px-6 py-3 text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors"
+                >
+                  {BOOK_CTA_LABEL}
+                </button>
+                <span className="text-xs text-slate-400">While you wait, get the foundations now.</span>
+              </div>
+            </div>
           </div>
         </div>
       </main>
 
-      <section className="relative z-20 px-4 pb-8 sm:pb-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-lg sm:text-xl font-semibold">Why we&apos;re building this</h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300">
-            SyncTeamAI Conference is where builders learn how to guide AI systems with clarity, compare multi-agent
-            workflows, and design better human-AI collaboration. The waiting list helps us shape the sessions and invite
-            the right mix of teams, educators, and creators.
-          </p>
-        </div>
-      </section>
-
-      <section className="relative z-20 px-4 pb-10 sm:pb-16">
-        <div className="max-w-4xl mx-auto bg-slate-800/40 border border-slate-700 rounded-lg p-6 sm:p-8 text-center">
-          <h2 className="text-xl sm:text-2xl font-semibold">While you&apos;re on the waiting list...</h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300">
-            The conference is rooted in practical prompt engineering. The book gives you the foundation now, so you
-            arrive ready to ask sharper questions and build stronger multi-agent workflows.
-          </p>
-          <div className="mt-5 flex flex-col items-center gap-2">
-            <button
-              type="button"
-              onClick={handleNavigateToProgress}
-              className="px-6 py-3 text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors"
-            >
-              {BOOK_CTA_LABEL}
-            </button>
-            <span className="text-xs text-slate-400">While you wait, get the foundations now.</span>
+      <section className="relative z-20 px-4 pb-12 sm:pb-16">
+        <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-2 items-start">
+          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 sm:p-8 text-center lg:text-left">
+            <h2 className="text-lg sm:text-xl font-semibold">Conference overview</h2>
+            <p className="mt-3 text-sm sm:text-base text-slate-300">
+              A quick walkthrough of what to expect, why it matters, and how the community shapes the agenda.
+            </p>
           </div>
-          <div
-            className="mt-6 relative w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/40"
-            style={{ paddingTop: "56.25%" }}
-          >
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/embed/jHIy8Tjx56I"
-              title="SyncTeamAI Conference overview"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 sm:p-8 flex justify-center">
+            <div className="w-full max-w-[480px]">
+              <div
+                className="relative w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/40"
+                style={{ paddingTop: "56.25%" }}
+              >
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/jHIy8Tjx56I"
+                  title="SyncTeamAI Conference overview"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>

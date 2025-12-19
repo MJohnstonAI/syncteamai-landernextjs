@@ -75,14 +75,15 @@ const BookPage = () => {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 items-center">
           <div className="overflow-hidden rounded-lg border border-slate-700 bg-slate-900/60 p-4">
-            <div className="relative w-full max-w-sm mx-auto" style={{ aspectRatio: "2 / 3" }}>
+            <div className="relative w-full max-w-sm mx-auto pt-[150%]">
               <Image
-                src="/images/ebookcover.webp"
+                src="/images/book-cover.webp"
                 alt="Prompt engineering book cover"
                 fill
                 sizes="(min-width: 768px) 240px, 70vw"
                 className="object-contain"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -112,6 +113,8 @@ const BookPage = () => {
 };
 
 export default BookPage;
+
+
 
 
 
