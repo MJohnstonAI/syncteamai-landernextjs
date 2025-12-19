@@ -27,19 +27,17 @@ const SUPPORTING_LINES = [
   "Learn practical prompt engineering workflows, then see them applied in live sessions.",
   "Get in early and help shape the first SyncTeamAI Conference agenda.",
 ];
-  const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
+const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [messageBody, setMessageBody] = useState<string>("");
-  const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting">("idle");
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [hasInteractedWithForm, setHasInteractedWithForm] = useState(false);
-
   const [subheadingIndex, setSubheadingIndex] = useState(0);
 
   useEffect(() => {
@@ -54,17 +52,6 @@ const HomePage: React.FC = () => {
       device_category: getDeviceType(),
       page_title: "HomePage",
     });
-
-    const targetDate = new Date("2026-02-01T00:00:00Z");
-    const now = new Date();
-    const difference = targetDate.getTime() - now.getTime();
-
-    if (difference > 0) {
-      const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-      setDaysLeft(days);
-    } else {
-      setDaysLeft(0);
-    }
 
     const subheadingInterval = setInterval(() => {
       setSubheadingIndex((prevIndex) => (prevIndex + 1) % SUPPORTING_LINES.length);
@@ -136,17 +123,6 @@ const HomePage: React.FC = () => {
     router.push("/progress");
   };
 
-  const daysLeftWidget = daysLeft !== null && daysLeft >= 0 && (
-    <div className="w-full text-center bg-slate-800/50 border border-slate-700 rounded-lg p-4 sm:p-5 md:p-6 shadow-lg">
-      <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-400 tracking-wider">
-        {daysLeft}
-      </div>
-      <div className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-slate-400 mt-2">
-        {daysLeft === 1 ? "Day Left" : "Days Left"}
-      </div>
-    </div>
-  );
-
   return (
     <div className="relative z-20 min-h-screen flex flex-col lg:block">
       <header className="relative lg:absolute top-0 left-0 w-full p-4 md:p-8">
@@ -155,12 +131,6 @@ const HomePage: React.FC = () => {
         </div>
       </header>
 
-      <div
-        className="hidden lg:block absolute top-1/2 -translate-y-1/2 left-4 md:left-8 animate-fade-in-up"
-        style={{ animationDelay: "0.3s" }}
-      >
-        {daysLeftWidget}
-      </div>
       <main className="flex-grow flex flex-col justify-start items-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28 text-center">
         <div className="w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl animate-fade-in-up">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
@@ -276,10 +246,6 @@ const HomePage: React.FC = () => {
         </div>
       </main>
 
-      <div className="lg:hidden w-full px-4 pb-6 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">{daysLeftWidget}</div>
-      </div>
-
       <section className="relative z-20 px-4 pb-8 sm:pb-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-lg sm:text-xl font-semibold">Why we&apos;re building this</h2>
@@ -332,4 +298,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-

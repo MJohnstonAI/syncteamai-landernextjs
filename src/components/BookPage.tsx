@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const bookUrl = "https://www.amazon.com/dp/B0G2FJ39G7";
@@ -73,8 +74,17 @@ const BookPage = () => {
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 items-center">
-          <div className="border border-dashed border-slate-600 rounded-lg p-6 text-sm text-slate-400">
-            TODO: Add the ebook cover image or a short preview video here (no autoplay).
+          <div className="overflow-hidden rounded-lg border border-slate-700 bg-slate-900/60 p-4">
+            <div className="relative w-full max-w-sm mx-auto" style={{ aspectRatio: "2 / 3" }}>
+              <Image
+                src="/images/ebookcover.webp"
+                alt="Prompt engineering book cover"
+                fill
+                sizes="(min-width: 768px) 240px, 70vw"
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
           <div className="space-y-4 text-sm md:text-base text-slate-300">
             <p>
@@ -102,3 +112,6 @@ const BookPage = () => {
 };
 
 export default BookPage;
+
+
+

@@ -34,7 +34,7 @@
 ## Pending / To-Do
 1. Add book cover image (user will upload later).
    - Place file in `public/images/` (e.g., `book-cover.jpg`).
-   - Replace the placeholder in `src/components/BookPage.tsx` with an `<img>` or `next/image` using `/images/book-cover.jpg`.
+   - Replace the placeholder in `src/components/BookPage.tsx` with an `<img>` or `next/image` using `/images/book-cover.webp`.
 2. Optional: Add the same video to the book page if desired (user said keep it on landing only).
 
 ## Notes on gtag
