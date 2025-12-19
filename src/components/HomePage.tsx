@@ -4,7 +4,21 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ShareActions from "@/components/ShareActions";
 
-declare const gtag: (...args: any[]) => void;
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+const track = (...args: any[]) => {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    window.gtag = (...gtagArgs: any[]) => window.dataLayer?.push(gtagArgs);
+  }
+  window.gtag(...args);
+};
 
 const HomePage: React.FC = () => {
   const router = useRouter();
@@ -37,7 +51,7 @@ const HomePage: React.FC = () => {
       return "desktop";
     };
 
-    gtag("event", "page_view", {
+    track("event", "page_view", {
       device_category: getDeviceType(),
       page_title: "HomePage",
     });
@@ -62,7 +76,7 @@ const HomePage: React.FC = () => {
 
   const handleFormInteraction = () => {
     if (!hasInteractedWithForm) {
-      gtag("event", "begin_form_interaction", { form_id: "waitlist_form" });
+      track("event", "begin_form_interaction", { form_id: "waitlist_form" });
       setHasInteractedWithForm(true);
     }
   };
@@ -87,7 +101,7 @@ const HomePage: React.FC = () => {
       });
 
       if (response.ok) {
-        gtag("event", "generate_lead", { method: "Formspree" });
+        track("event", "generate_lead", { method: "Formspree" });
         setSuccessMessage("Thanks for signing up! We'll be in touch soon.");
         setFormStatus("idle");
         setName("");
@@ -98,7 +112,7 @@ const HomePage: React.FC = () => {
       }
     } catch (error) {
       console.error("Formspree submission failed, falling back to mailto:", error);
-      gtag("event", "generate_lead_fallback", { method: "Mailto" });
+      track("event", "generate_lead_fallback", { method: "Mailto" });
       setErrorMessage(
         "Something went wrong, but you can still sign up! Opening your email client as a backup..."
       );
@@ -116,7 +130,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleNavigateToProgress = () => {
-    gtag("event", "view_item", {
+    track("event", "view_item", {
       item_list_name: "Dev Progress",
       item_list_id: "progress_page",
     });
