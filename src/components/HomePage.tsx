@@ -27,7 +27,7 @@ const SUPPORTING_LINES = [
   "Learn practical prompt engineering workflows, then see them applied in live sessions.",
   "Get in early and help shape the first SyncTeamAI Conference agenda.",
 ];
-const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
+  const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
@@ -147,27 +147,6 @@ const HomePage: React.FC = () => {
     </div>
   );
 
-  const bookCtaWidget = (
-    <div className="w-full text-center bg-slate-800/50 border border-slate-700 rounded-lg p-4 sm:p-5 md:p-6 shadow-lg">
-      <p className="text-xs sm:text-sm text-slate-400 mb-3">While you wait, get the foundations now.</p>
-      <button
-        onClick={handleNavigateToProgress}
-        className="w-full sm:w-auto px-6 py-3.5 sm:py-3 md:px-8 md:py-4 text-base sm:text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors duration-300 flex items-center justify-center min-h-[44px] sm:min-h-[36px]"
-      >
-        <span>{BOOK_CTA_LABEL}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="ml-2 h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  );
-
   return (
     <div className="relative z-20 min-h-screen flex flex-col lg:block">
       <header className="relative lg:absolute top-0 left-0 w-full p-4 md:p-8">
@@ -182,14 +161,7 @@ const HomePage: React.FC = () => {
       >
         {daysLeftWidget}
       </div>
-      <div
-        className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-4 md:right-8 animate-fade-in-up"
-        style={{ animationDelay: "0.3s" }}
-      >
-        {bookCtaWidget}
-      </div>
-
-      <main className="flex-grow flex flex-col justify-center items-center px-4 py-8 md:py-0 lg:min-h-screen text-center">
+      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28 text-center">
         <div className="w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl animate-fade-in-up">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
             SyncTeamAI Conference
@@ -305,10 +277,7 @@ const HomePage: React.FC = () => {
       </main>
 
       <div className="lg:hidden w-full px-4 pb-6 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-          {daysLeftWidget}
-          {bookCtaWidget}
-        </div>
+        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">{daysLeftWidget}</div>
       </div>
 
       <section className="relative z-20 px-4 pb-8 sm:pb-12">
@@ -339,8 +308,17 @@ const HomePage: React.FC = () => {
             </button>
             <span className="text-xs text-slate-400">While you wait, get the foundations now.</span>
           </div>
-          <div className="mt-6 border border-dashed border-slate-600 rounded-lg p-6 text-sm text-slate-400">
-            TODO: Add a short conference overview video here (no autoplay).
+          <div
+            className="mt-6 relative w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/40"
+            style={{ paddingTop: "56.25%" }}
+          >
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src="https://www.youtube.com/embed/jHIy8Tjx56I"
+              title="SyncTeamAI Conference overview"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </section>
