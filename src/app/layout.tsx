@@ -6,7 +6,7 @@ import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteTitle,
-  description: siteDescription,
+  description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
   alternates: {
     canonical: "/",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     title: siteTitle,
-    description: siteDescription,
+    description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
     images: [
       {
         url: "/og-image.png",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
-    description: siteDescription,
+    description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
     images: ["/twitter-image.png"],
   },
 };
@@ -55,7 +55,7 @@ export default function RootLayout({
         name: "SyncTeamAI",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web",
-        description: siteDescription,
+        description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
         offers: {
           "@type": "Offer",
           price: "0",
@@ -88,3 +88,4 @@ export default function RootLayout({
     </html>
   );
 }
+

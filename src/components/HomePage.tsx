@@ -27,7 +27,7 @@ const SUPPORTING_LINES = [
   "Learn practical prompt engineering workflows, then see them applied in live sessions.",
   "Get in early and help shape the first SyncTeamAI Conference agenda.",
 ];
-const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
+const BOOK_CTA_LABEL = "Learn about our Prompt Engineering eBook";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
@@ -299,6 +299,7 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
 
 
 
