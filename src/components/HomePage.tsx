@@ -267,43 +267,33 @@ const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleNavigateToProgress}
-                  className="px-6 py-3 text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors"
+                  className="px-6 py-3 text-sm font-semibold bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors"
                 >
                   {BOOK_CTA_LABEL}
                 </button>
                 <span className="text-xs text-slate-400">While you wait, get the foundations now.</span>
+              </div>
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <div className="w-full max-w-[480px]">
+                  <div
+                    className="relative w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/40"
+                    style={{ paddingTop: "56.25%" }}
+                  >
+                    <iframe
+                      className="absolute inset-0 h-full w-full"
+                      src="https://www.youtube.com/embed/jHIy8Tjx56I"
+                      title="SyncTeamAI Conference overview"
+                      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      <section className="relative z-20 px-4 pb-12 sm:pb-16">
-        <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-2 items-start">
-          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 sm:p-8 text-center lg:text-left">
-            <h2 className="text-lg sm:text-xl font-semibold">Conference overview</h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-300">
-              A quick walkthrough of what to expect, why it matters, and how the community shapes the agenda.
-            </p>
-          </div>
-          <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 sm:p-8 flex justify-center">
-            <div className="w-full max-w-[480px]">
-              <div
-                className="relative w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/40"
-                style={{ paddingTop: "56.25%" }}
-              >
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/jHIy8Tjx56I"
-                  title="SyncTeamAI Conference overview"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <footer className="relative lg:absolute bottom-0 left-0 right-0 p-4 md:p-6 text-center text-slate-400 text-sm mt-16 sm:mt-20 lg:mt-0 py-6 sm:py-4">
         <ShareActions />
@@ -314,3 +304,6 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+
+
