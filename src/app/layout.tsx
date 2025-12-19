@@ -6,7 +6,15 @@ import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteTitle,
-  description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
+  description: siteDescription,
+  keywords: [
+    "SyncTeamAI Conference",
+    "prompt engineering conference",
+    "human AI collaboration",
+    "multi-agent workflows",
+    "AI conference",
+    "prompt engineering",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -14,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     title: siteTitle,
-    description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
+    description: siteDescription,
     images: [
       {
         url: "/og-image.png",
@@ -24,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
-    description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
+    description: siteDescription,
     images: ["/twitter-image.png"],
   },
 };
@@ -55,7 +63,7 @@ export default function RootLayout({
         name: "SyncTeamAI",
         applicationCategory: "DeveloperApplication",
         operatingSystem: "Web",
-        description: siteDescription,\n  keywords: [\n    "SyncTeamAI Conference",\n    "prompt engineering conference",\n    "human AI collaboration",\n    "multi-agent workflows",\n    "AI conference",\n    "prompt engineering",\n  ],
+        description: siteDescription,
         offers: {
           "@type": "Offer",
           price: "0",

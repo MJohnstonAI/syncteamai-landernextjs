@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import AppShell from "@/components/AppShell";
 import HomePage from "@/components/HomePage";
 import Script from "next/script";
 import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const eventSchema = {
@@ -31,3 +40,5 @@ export default function Home() {
     </AppShell>
   );
 }
+
+
