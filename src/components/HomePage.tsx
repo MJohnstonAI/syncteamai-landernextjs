@@ -124,9 +124,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="relative z-20 min-h-screen flex flex-col lg:block">
+    <div className="relative z-20 min-h-screen flex flex-col">
 
-      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
+      <main className="flex-grow flex flex-col justify-center items-center px-4 py-10 sm:py-12 md:py-16 lg:py-20">
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className="animate-fade-in-up text-center lg:text-left flex flex-col items-center lg:items-start">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
@@ -290,7 +290,7 @@ const HomePage: React.FC = () => {
       </main>
 
 
-      <footer className="relative lg:absolute bottom-0 left-0 right-0 p-4 md:p-6 text-center text-slate-400 text-sm mt-16 sm:mt-20 lg:mt-0 py-6 sm:py-4">
+      <footer className="mt-auto w-full px-4 md:px-6 py-6 sm:py-4 text-center text-slate-400 text-sm">
         <ShareActions />
         <p>&copy; 2025 NeuroSyncTeam AI Dynamics Pty Ltd. All rights reserved.</p>
       </footer>
@@ -299,6 +299,7 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
 
 
 
