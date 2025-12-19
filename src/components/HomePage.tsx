@@ -125,17 +125,12 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative z-20 min-h-screen flex flex-col lg:block">
-      <header className="relative lg:absolute top-0 left-0 w-full p-4 md:p-8">
-        <div className="text-2xl md:text-3xl font-bold tracking-tighter">
-          SyncTeam<span className="text-blue-400">AI</span>
-        </div>
-      </header>
 
-      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+      <main className="flex-grow flex flex-col justify-start items-center px-4 pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className="animate-fade-in-up text-center lg:text-left flex flex-col items-center lg:items-start">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
-              SyncTeamAI Conference
+              SyncTeam<span className="text-sky-400">AI</span> Conference
             </h1>
             <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300">
               Human-AI collaboration, prompt engineering, and multi-agent workflows - launching soon.
@@ -304,6 +299,8 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+
 
 
 
