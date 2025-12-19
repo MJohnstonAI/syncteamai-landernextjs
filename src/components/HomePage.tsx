@@ -7,18 +7,27 @@ import ShareActions from "@/components/ShareActions";
 declare global {
   interface Window {
     dataLayer?: unknown[];
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: GtagArgs) => void;
   }
 }
 
-const track = (...args: any[]) => {
+type GtagArgs = [string, string, Record<string, unknown>?];
+
+const track = (...args: GtagArgs) => {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   if (typeof window.gtag !== "function") {
-    window.gtag = (...gtagArgs: any[]) => window.dataLayer?.push(gtagArgs);
+    window.gtag = (...gtagArgs: GtagArgs) => window.dataLayer?.push(gtagArgs);
   }
   window.gtag(...args);
 };
+
+const SUPPORTING_LINES = [
+  "Join builders and teams exploring how humans and AI agents solve hard problems together.",
+  "Learn practical prompt engineering workflows, then see them applied in live sessions.",
+  "Get in early and help shape the first SyncTeamAI Conference agenda.",
+];
+const BOOK_CTA_LABEL = "Learn about the Prompt Engineering Book";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
@@ -31,16 +40,6 @@ const HomePage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [hasInteractedWithForm, setHasInteractedWithForm] = useState(false);
 
-  const subheadings = [
-    "The first platform where rival AI models collaborate in real-time. Watch them debate, challenge each other's ideas, and deliver solutions no single AI could create alone. Early access launching soon.",
-    "Stop choosing between AI platforms. Get the best thinking from all of them - in one conversation. Each brings their superpower, together they're unstoppable.",
-    "SyncTeamAI makes competing AI models collaborate like a brainstorming team - each contributing their unique strengths while checking each other's blind spots. Join the waitlist for the future of problem-solving.",
-    "The smartest solutions come from diverse perspectives. We built the first platform where leading AI models debate, collaborate, and synthesize breakthrough answers together.",
-    "Stop Switching Between AI Apps. Start Getting Better Answers. You've been copy-pasting the same question across multiple AI platforms. Now watch them work togetherƒ?\"combining strengths, challenging assumptions, and delivering solutions no single AI can match.",
-    "Imagine a conference room where the world's most powerful AI models challenge each other's ideas and build solutions together. That's SyncTeamAI. Be among the first to experience it.",
-    "They don't competeƒ?\"they collaborate. Watch leading AI models debate your challenge, build on each other's insights, and deliver solutions that single-AI conversations simply can't reach. Join the waitlist.",
-    "Go beyond a single agent. SyncTeamAI orchestrates a symphony of specialized AIs to solve complex problems with unprecedented creativity and efficiency. Be the first to know when we launch.",
-  ];
   const [subheadingIndex, setSubheadingIndex] = useState(0);
 
   useEffect(() => {
@@ -68,7 +67,7 @@ const HomePage: React.FC = () => {
     }
 
     const subheadingInterval = setInterval(() => {
-      setSubheadingIndex((prevIndex) => (prevIndex + 1) % subheadings.length);
+      setSubheadingIndex((prevIndex) => (prevIndex + 1) % SUPPORTING_LINES.length);
     }, 5000);
 
     return () => clearInterval(subheadingInterval);
@@ -131,8 +130,8 @@ const HomePage: React.FC = () => {
 
   const handleNavigateToProgress = () => {
     track("event", "view_item", {
-      item_list_name: "Dev Progress",
-      item_list_id: "progress_page",
+      item_list_name: "Prompt Engineering Book",
+      item_list_id: "book_page",
     });
     router.push("/progress");
   };
@@ -148,13 +147,14 @@ const HomePage: React.FC = () => {
     </div>
   );
 
-  const devProgressWidget = (
+  const bookCtaWidget = (
     <div className="w-full text-center bg-slate-800/50 border border-slate-700 rounded-lg p-4 sm:p-5 md:p-6 shadow-lg">
+      <p className="text-xs sm:text-sm text-slate-400 mb-3">While you wait, get the foundations now.</p>
       <button
         onClick={handleNavigateToProgress}
-        className="w-full sm:w-auto px-6 py-3.5 sm:py-3 md:px-8 md:py-4 text-base sm:text-sm font-semibold bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-indigo-500 transition-colors duration-300 flex items-center justify-center min-h-[44px] sm:min-h-[36px]"
+        className="w-full sm:w-auto px-6 py-3.5 sm:py-3 md:px-8 md:py-4 text-base sm:text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors duration-300 flex items-center justify-center min-h-[44px] sm:min-h-[36px]"
       >
-        <span>View Dev Progress</span>
+        <span>{BOOK_CTA_LABEL}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="ml-2 h-5 w-5"
@@ -171,9 +171,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="relative z-20 min-h-screen flex flex-col lg:block">
       <header className="relative lg:absolute top-0 left-0 w-full p-4 md:p-8">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tighter">
+        <div className="text-2xl md:text-3xl font-bold tracking-tighter">
           SyncTeam<span className="text-blue-400">AI</span>
-        </h1>
+        </div>
       </header>
 
       <div
@@ -186,22 +186,25 @@ const HomePage: React.FC = () => {
         className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-4 md:right-8 animate-fade-in-up"
         style={{ animationDelay: "0.3s" }}
       >
-        {devProgressWidget}
+        {bookCtaWidget}
       </div>
 
       <main className="flex-grow flex flex-col justify-center items-center px-4 py-8 md:py-0 lg:min-h-screen text-center">
         <div className="w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl animate-fade-in-up">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
-            What If the Top AIs Worked Together to Solve YOUR Problem?
-          </h2>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight">
+            SyncTeamAI Conference
+          </h1>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300">
-            Multi-AI collaboration is finally here.
+            Human-AI collaboration, prompt engineering, and multi-agent workflows - launching soon.
+          </p>
+          <p className="mt-3 text-xs sm:text-sm text-slate-400">
+            Early access | Private demos | Founding-member perks
           </p>
           <p
             key={subheadingIndex}
-            className="mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-400 min-h-[6rem] animate-fade-in"
+            className="mt-4 max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-400 min-h-[4rem] animate-fade-in"
           >
-            {subheadings[subheadingIndex]}
+            {SUPPORTING_LINES[subheadingIndex]}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 max-w-sm sm:max-w-md md:max-w-lg mx-auto">
@@ -273,7 +276,7 @@ const HomePage: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <span>Notify Me</span>
+                    <span>Join the Waiting List</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="ml-2 h-5 w-5"
@@ -304,9 +307,43 @@ const HomePage: React.FC = () => {
       <div className="lg:hidden w-full px-4 pb-6 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
         <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
           {daysLeftWidget}
-          {devProgressWidget}
+          {bookCtaWidget}
         </div>
       </div>
+
+      <section className="relative z-20 px-4 pb-8 sm:pb-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-lg sm:text-xl font-semibold">Why we&apos;re building this</h2>
+          <p className="mt-3 text-sm sm:text-base text-slate-300">
+            SyncTeamAI Conference is where builders learn how to guide AI systems with clarity, compare multi-agent
+            workflows, and design better human-AI collaboration. The waiting list helps us shape the sessions and invite
+            the right mix of teams, educators, and creators.
+          </p>
+        </div>
+      </section>
+
+      <section className="relative z-20 px-4 pb-10 sm:pb-16">
+        <div className="max-w-4xl mx-auto bg-slate-800/40 border border-slate-700 rounded-lg p-6 sm:p-8 text-center">
+          <h2 className="text-xl sm:text-2xl font-semibold">While you&apos;re on the waiting list...</h2>
+          <p className="mt-3 text-sm sm:text-base text-slate-300">
+            The conference is rooted in practical prompt engineering. The book gives you the foundation now, so you
+            arrive ready to ask sharper questions and build stronger multi-agent workflows.
+          </p>
+          <div className="mt-5 flex flex-col items-center gap-2">
+            <button
+              type="button"
+              onClick={handleNavigateToProgress}
+              className="px-6 py-3 text-sm font-semibold border border-slate-600 text-white rounded-md hover:border-slate-400 hover:bg-slate-800/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500 transition-colors"
+            >
+              {BOOK_CTA_LABEL}
+            </button>
+            <span className="text-xs text-slate-400">While you wait, get the foundations now.</span>
+          </div>
+          <div className="mt-6 border border-dashed border-slate-600 rounded-lg p-6 text-sm text-slate-400">
+            TODO: Add a short conference overview video here (no autoplay).
+          </div>
+        </div>
+      </section>
 
       <footer className="relative lg:absolute bottom-0 left-0 right-0 p-4 md:p-6 text-center text-slate-400 text-sm mt-16 sm:mt-20 lg:mt-0 py-6 sm:py-4">
         <ShareActions />
@@ -317,3 +354,4 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+

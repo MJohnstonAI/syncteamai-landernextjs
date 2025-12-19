@@ -3,14 +3,15 @@
 import { useState } from "react";
 import { siteUrl } from "@/lib/site";
 
-declare const gtag: (...args: any[]) => void;
+type GtagArgs = [string, string, Record<string, unknown>?];
 
 const shareText =
-  "Check out SyncTeamAI! Orchestrate teams of specialized AIs to solve complex problems. Join the waitlist:";
+  "Join the SyncTeamAI Conference waiting list for human-AI collaboration, prompt engineering, and multi-agent workflows:";
 
-const fireGtag = (...args: any[]) => {
-  if (typeof gtag === "function") {
-    gtag(...args);
+const fireGtag = (...args: GtagArgs) => {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag === "function") {
+    window.gtag(...args);
   }
 };
 
