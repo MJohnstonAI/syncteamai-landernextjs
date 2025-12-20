@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { siteDescription, siteTitle, siteUrl } from "@/lib/site";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-900 text-white">
         {children}
+        <Analytics />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-57J6VRNRLZ"
           strategy="afterInteractive"
